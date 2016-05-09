@@ -7,5 +7,8 @@ public class Rose implements Flower{
     this.price=price;
     this.name=name;
   }
+  public void accept(FlowerVisitor flowerVisitor){
+    flowerVisitor.visit(this);
+  }
 
 }
