@@ -1,6 +1,6 @@
 public class IndianLotus implements Flower{
 private int amount;
-private int price;
+private double price;
 private String name;
 public IndianLotus(int amount, double price, String name){
   this.amount=amount;

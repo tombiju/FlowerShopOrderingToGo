@@ -1,6 +1,6 @@
 public class Marigold implements Flower{
 private int amount;
-private int price;
+private double price;
 private String name;
 public Marigold(int amount, double price, String name){
   this.amount=amount;

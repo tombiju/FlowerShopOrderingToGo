@@ -1,4 +1,4 @@
-public class FlowerVisitor{
+public interface FlowerVisitor{
   public void visit(Rose rose);
   public void visit(IndianLotus indianLotus);
   public void visit(Jasmine jasmine);

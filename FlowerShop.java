@@ -11,17 +11,29 @@ public class FlowerShop{
     PassionFlower passionFlowerStock=new PassionFlower(20,7.00,"passion flowers");
     Marigold marigoldStock=new Marigold(20, 5.00,"marigolds");
     Jasmine jasmineStock=new Jasmine(20,8.00,"jasmines");
-    IndianLotus indianLotusStock=new IndianLotusStock(20,10.00,"indian lotuses");
+    IndianLotus indianLotusStock=new IndianLotus(20,10.00,"indian lotuses");
     String userInput;
+    boolean flag=true;
     Scanner scanner=new Scanner(System.in);
     System.out.println("Hello Customer! Welcome to Fragrant Flowers! How may I help you today?");
     do{
       System.out.println("1-BUY");
       System.out.println("2-EXIT");
-      userInput=scanner.nextString();
+      userInput=scanner.next();
       if(userInput.equals("1")){
-        roseStock.accept(new FlowerVisitor());
+        System.out.println("Would you like to buy ...");
+        System.out.println("1-Roses");
+        System.out.println("2-PassionFlower");
+        System.out.println("3-Marigold");
+        System.out.println("4-Jasmine");
+        System.out.println("5-Indian Lotus");
+        System.out.println("6-A bouquet");
       }
-    }while(true);
+      else{
+        flag=false;
+      }
+        //switch statement goes here
+      //  roseStock.accept(new FlowerProcessingVisitor());
+      }while(flag);
+    }
   }
-}

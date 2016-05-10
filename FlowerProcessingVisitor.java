@@ -14,8 +14,5 @@ public class FlowerProcessingVisitor implements FlowerVisitor{
     public void visit(IndianLotus IndianLotus){
       System.out.println("You visited an indian lotus!");
     }
-    public void visit(Rose rose){
-      System.out.println("You visited a rose!");
-    }
 
 }

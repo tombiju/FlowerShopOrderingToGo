@@ -1,6 +1,6 @@
 public class PassionFlower implements Flower{
 private int amount;
-private int price;
+private double price;
 private String name;
 public PassionFlower(int amount, double price, String name){
   this.amount=amount;
