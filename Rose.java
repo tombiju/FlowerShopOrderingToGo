@@ -10,5 +10,17 @@ public class Rose implements Flower{
   public void accept(FlowerVisitor flowerVisitor){
     flowerVisitor.visit(this);
   }
+public void getPrice(){
+  System.out.println(this.price);
+}
+public void setPrice(double price){
+  this.price=price;
+  System.out.println("The price was changed to $"+this.price);
+}
+public int getAmount(){
+  return this.amount;
+}
+public void buyFlowers(int Flowers){//calculate price
 
+}
 }

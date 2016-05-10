@@ -28,6 +28,23 @@ public class FlowerShop{
         System.out.println("4-Jasmine");
         System.out.println("5-Indian Lotus");
         System.out.println("6-A bouquet");
+        userInput=scanner.next();
+        System.out.println("How many would you like?");
+        switch(userInput){
+          case "1":
+          
+            break;
+          case "2":
+            break;
+          case "3":
+            break;
+          case "4":
+            break;
+          case "5":
+            break;
+          default:
+            break;
+        }
       }
       else{
         flag=false;
