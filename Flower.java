@@ -1,3 +1,3 @@
 public interface Flower{
-  public void accept(FlowerVisitor flowerVisitor);
+  public double accept(FlowerVisitor flowerVisitor, int amount);
 }

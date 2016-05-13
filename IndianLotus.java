@@ -7,11 +7,11 @@ public IndianLotus(int amount, double price, String name){
   this.price=price;
   this.name=name;
 }
-public void accept(FlowerVisitor flowerVisitor){
-  flowerVisitor.visit(this);
+public double accept(FlowerVisitor flowerVisitor, int amount){
+  return amount*flowerVisitor.calculate(this);
 }
-public void getPrice(){
-  System.out.println(this.price);
+public double getPrice(){
+  return this.price;
 }
 public void setPrice(double price){
   this.price=price;

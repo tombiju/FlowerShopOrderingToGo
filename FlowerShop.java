@@ -4,6 +4,7 @@ Keep track of the number of objects and when you may need to order more.
 -Implemented by Tom Biju
 */
 import java.util.Scanner;
+import java.lang.*;
 public class FlowerShop{
   public static void main(String args[]){
     /**establishing store defaults of 20 flowers for each type of flower*/
@@ -30,9 +31,10 @@ public class FlowerShop{
         System.out.println("6-A bouquet");
         userInput=scanner.next();
         System.out.println("How many would you like?");
+        int amount=scanner.nextInt();
         switch(userInput){
           case "1":
-          
+            roseStock.accept(new FlowerProcessingVisitor(),amount);
             break;
           case "2":
             break;

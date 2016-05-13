@@ -1,7 +1,7 @@
 public interface FlowerVisitor{
-  public void visit(Rose rose);
-  public void visit(IndianLotus indianLotus);
-  public void visit(Jasmine jasmine);
-  public void visit(Marigold marigold);
-  public void visit(PassionFlower passionFlower);
+  public double calculate(Rose rose);
+  public double calculate(IndianLotus indianLotus);
+  public double calculate(Jasmine jasmine);
+  public double calculate(Marigold marigold);
+  public double calculate(PassionFlower passionFlower);
 }

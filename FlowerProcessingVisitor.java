@@ -1,18 +1,23 @@
 public class FlowerProcessingVisitor implements FlowerVisitor{
-    public void visit(Rose rose){
+    public double calculate(Rose rose){
       System.out.println("You visited a rose!");
+      return rose.getPrice();
     }
-    public void visit(PassionFlower passionFlower){
+    public double calculate(PassionFlower passionFlower){
       System.out.println("You visited a passion flower!");
+      return passionFlower.getPrice();
     }
-    public void visit(Marigold marigold){
+    public double calculate(Marigold marigold){
       System.out.println("You visited a marigold!");
+      return marigold.getPrice();
     }
-    public void visit(Jasmine jasmine){
+    public double calculate(Jasmine jasmine){
       System.out.println("You visited a jasmine!");
+      return jasmine.getPrice();
     }
-    public void visit(IndianLotus IndianLotus){
+    public double calculate(IndianLotus indianLotus){
       System.out.println("You visited an indian lotus!");
+      return indianLotus.getPrice();
     }
 
 }
