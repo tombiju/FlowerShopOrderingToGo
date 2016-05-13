@@ -37,19 +37,25 @@ public class FlowerShop{
             roseStock.accept(new FlowerProcessingVisitor(),amount);
             break;
           case "2":
+            passionFlowerStock.accept(new FlowerProcessingVisitor(),amount);
             break;
           case "3":
+            marigoldStock.accept(new FlowerProcessingVisitor(),amount);
             break;
           case "4":
+            jasmineStock.accept(new FlowerProcessingVisitor(),amount);
             break;
           case "5":
+            indianLotusStock.accept(new FlowerProcessingVisitor(),amount);
             break;
           default:
+            //bouquet yet to be implemented
             break;
         }
       }
       else{
         flag=false;
+        System.out.println("Thank you, come again!")
       }
         //switch statement goes here
       //  roseStock.accept(new FlowerProcessingVisitor());
