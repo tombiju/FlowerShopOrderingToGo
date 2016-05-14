@@ -5,6 +5,11 @@ Keep track of the number of objects and when you may need to order more.
 */
 import java.util.Scanner;
 import java.lang.*;
+import java.awt.*;
+import java.awt.image.*;
+import java.io.*;
+import javax.imageio.*;
+import javax.swing.*;
 public class FlowerShop{
   public static void main(String args[]){
     /**establishing store defaults of 20 flowers for each type of flower*/
@@ -32,8 +37,27 @@ public class FlowerShop{
         userInput=scanner.next();
         System.out.println("How many would you like?");
         int amount=scanner.nextInt();
+        //Learned how to implement image viewing from Alvin Alexander @ alvinalexander.com
         switch(userInput){
           case "1":
+            JFrame editorFrame = new JFrame("Roses");
+            editorFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+            BufferedImage image=null;
+            try{
+            image = ImageIO.read(new File("C:\\Users\\Tom\\Desktop\\rose.jpg"));
+          }
+          catch (Exception e)
+          {
+            e.printStackTrace();
+           System.exit(1);
+          }
+            ImageIcon imageIcon = new ImageIcon(image);
+            JLabel jLabel = new JLabel();
+            jLabel.setIcon(imageIcon);
+            editorFrame.getContentPane().add(jLabel, BorderLayout.CENTER);
+            editorFrame.pack();
+            editorFrame.setLocationRelativeTo(null);
+            editorFrame.setVisible(true);
             roseStock.accept(new FlowerProcessingVisitor(),amount);
             break;
           case "2":
@@ -55,7 +79,7 @@ public class FlowerShop{
       }
       else{
         flag=false;
-        System.out.println("Thank you, come again!")
+        System.out.println("Thank you, come again!");
       }
         //switch statement goes here
       //  roseStock.accept(new FlowerProcessingVisitor());
