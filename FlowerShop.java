@@ -63,18 +63,19 @@ public class FlowerShop{
   }
       user=new Person(userName,userMoney);
     }
-    //Music implementation learned from RB Whitaker at rbwhitaker.wikidot.com
-    try{
-    InputStream in = new FileInputStream(new File("songOfStorms.wav"));
-    AudioStream audioStream = new AudioStream(in);
-    AudioPlayer.player.start(audioStream);
-  }
-  catch (Exception e)
-  {
-    e.printStackTrace();
-   System.exit(1);
-  }
-  //AudioPlayer.player.stop(audioStream); //code to stop music
+    MusicPlayer jam=new MusicPlayer();
+    jam.play("songOfStorms.wav");
+  //   //Music implementation learned from RB Whitaker at rbwhitaker.wikidot.com
+  //   try{
+  //   InputStream in = new FileInputStream(new File("songOfStorms.wav"));
+  //   AudioStream audioStream = new AudioStream(in);
+  //   AudioPlayer.player.start(audioStream);
+  // }
+  // catch (Exception e)
+  // {
+  //   e.printStackTrace();
+  //  System.exit(1);
+  // }
     /**establishing store defaults of 20 flowers for each type of flower*/
     Rose roseStock=new Rose(20,9.00,"roses");
     PassionFlower passionFlowerStock=new PassionFlower(20,7.00,"passion flowers");
@@ -88,9 +89,8 @@ public class FlowerShop{
       System.out.println("1-BUY");
       System.out.println("2-BROWSE");
       System.out.println("3-BECOME STORE OWNER");
-      System.out.println("4-BECOME BUYER");
+      System.out.println("4-GET MORE MONEY");
       System.out.println("5-EXIT");
-
       userInput=scanner.next();
       if(userInput.equals("1")){
         System.out.println("Would you like to buy ...");
@@ -123,7 +123,7 @@ public class FlowerShop{
           case "6":
             //bouquet yet to be implemented
           default:
-            System.out.println("That's not a valid option...")
+            System.out.println("That's not a valid option...");
             break;
         }
       }
@@ -237,7 +237,7 @@ public class FlowerShop{
           System.out.print("The price for an indian lotus is $");
           System.out.printf("%.2f",indianLotusStock.getPrice());
           System.out.println();
-          editorFrame = new JFrame("Indian Lotues");
+          editorFrame = new JFrame("Indian Lotus");
           editorFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
           image=null;
           try{
@@ -257,8 +257,51 @@ public class FlowerShop{
           editorFrame.setVisible(true);
             break;
           default:
-            System.out.println("That's not a valid option...")
+            System.out.println("That's not a valid option...");
             break;
+        }
+      }
+      else if(userInput.equals("3")){
+        System.out.println("Proceeding behind the storecounter...");
+        System.out.println("Would you like to...");
+        System.out.println("1-Order flowers");
+        System.out.println("2-Make money via the lottery");
+        System.out.println("3-Change the Music");
+        int choice=scanner.nextInt();
+        switch(choice){
+          case 1:
+            break;
+          case 2:
+            break;
+          case 3:
+            System.out.println("Would you like to...");
+            System.out.println("1-Play The Song of Storms?");
+            System.out.println("2-Play The Milk Bar Song?");
+            System.out.println("3-Play The Wind Waker Theme?");
+            System.out.println("4-Stop the music?");
+            choice=scanner.nextInt();
+            switch(choice){
+              case 1:
+                jam.stop();
+                jam.play("songOfStorms.wav");
+                break;
+              case 2:
+                jam.stop();
+                jam.play("milkbar.wav");
+                break;
+              case 3:
+                jam.stop();
+                jam.play("windwaker.wav");
+                break;
+              case 4:
+                jam.stop();
+                break;
+              default:
+                System.out.println("That's not a valid option");
+            }
+            break;
+          default:
+            System.out.println("That's not a valid option...");
         }
       }
       else{

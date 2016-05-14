@@ -5,5 +5,7 @@ C:\Users\Tom\Desktop\FlowerShopOrderingToGo\FlowerShopOrderingToGo\FlowerVisitor
 C:\Users\Tom\Desktop\FlowerShopOrderingToGo\FlowerShopOrderingToGo\IndianLotus.java
 C:\Users\Tom\Desktop\FlowerShopOrderingToGo\FlowerShopOrderingToGo\Jasmine.java
 C:\Users\Tom\Desktop\FlowerShopOrderingToGo\FlowerShopOrderingToGo\Marigold.java
+C:\Users\Tom\Desktop\FlowerShopOrderingToGo\FlowerShopOrderingToGo\MusicPlayer.java
 C:\Users\Tom\Desktop\FlowerShopOrderingToGo\FlowerShopOrderingToGo\PassionFlower.java
+C:\Users\Tom\Desktop\FlowerShopOrderingToGo\FlowerShopOrderingToGo\Person.java
 C:\Users\Tom\Desktop\FlowerShopOrderingToGo\FlowerShopOrderingToGo\Rose.java
