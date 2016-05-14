@@ -120,8 +120,10 @@ public class FlowerShop{
           case "5":
             indianLotusStock.accept(new FlowerProcessingVisitor(),amount);
             break;
-          default:
+          case "6":
             //bouquet yet to be implemented
+          default:
+            System.out.println("That's not a valid option...")
             break;
         }
       }
@@ -255,7 +257,7 @@ public class FlowerShop{
           editorFrame.setVisible(true);
             break;
           default:
-            //bouquet yet to be implemented
+            System.out.println("That's not a valid option...")
             break;
         }
       }
