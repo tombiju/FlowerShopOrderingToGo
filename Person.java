@@ -14,6 +14,6 @@ public class Person{
   }
   public void transaction(double money){
     this.money+=money;
-    System.out.println(getName()+" now has $"+getMoney());
+    //System.out.println(getName()+" now has $"+getMoney());
   }
 }

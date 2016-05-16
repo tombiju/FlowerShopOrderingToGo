@@ -18,6 +18,7 @@ import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
 public class FlowerShop{
   public static void main(String args[]){
+    double value=0.00;
     /*Creating user and shopkeeper**/
     Person user;
     Person shopKeeper=new Person("Tom Biju",100);
@@ -64,7 +65,7 @@ public class FlowerShop{
       user=new Person(userName,userMoney);
     }
     MusicPlayer jam=new MusicPlayer();
-    jam.play("songOfStorms.wav");
+    jam.play("windwaker.wav");
   //   //Music implementation learned from RB Whitaker at rbwhitaker.wikidot.com
   //   try{
   //   InputStream in = new FileInputStream(new File("songOfStorms.wav"));
@@ -86,6 +87,12 @@ public class FlowerShop{
     boolean flag=true;
     System.out.println("Hello "+user.getName()+"! Welcome to Fragrant Flowers! How may I help you today?");
     do{
+      System.out.print("The shop keeper, "+shopKeeper.getName()+" has $");
+      System.out.printf("%.2f",shopKeeper.getMoney());
+      System.out.println();
+      System.out.print(user.getName()+" has $");
+      System.out.printf("%.2f",user.getMoney());
+      System.out.println();
       System.out.println("1-BUY");
       System.out.println("2-BROWSE");
       System.out.println("3-BECOME STORE OWNER");
@@ -106,22 +113,24 @@ public class FlowerShop{
         //Learned how to implement image viewing from Alvin Alexander @ alvinalexander.com
         switch(userInput){
           case "1":
-            roseStock.accept(new FlowerProcessingVisitor(),amount);
+            value=roseStock.accept(new FlowerProcessingVisitor(),amount,user.getMoney() );
+            user.transaction(-1*value);
+            shopKeeper.transaction(value);
             break;
           case "2":
-            passionFlowerStock.accept(new FlowerProcessingVisitor(),amount);
+            passionFlowerStock.accept(new FlowerProcessingVisitor(),amount,user.getMoney());
             break;
           case "3":
-            marigoldStock.accept(new FlowerProcessingVisitor(),amount);
+            marigoldStock.accept(new FlowerProcessingVisitor(),amount,user.getMoney());
             break;
           case "4":
-            jasmineStock.accept(new FlowerProcessingVisitor(),amount);
+            jasmineStock.accept(new FlowerProcessingVisitor(),amount,user.getMoney());
             break;
           case "5":
-            indianLotusStock.accept(new FlowerProcessingVisitor(),amount);
+            indianLotusStock.accept(new FlowerProcessingVisitor(),amount,user.getMoney());
             break;
           case "6":
-            //bouquet yet to be implemented
+             //TODO implement bouquet
           default:
             System.out.println("That's not a valid option...");
             break;
