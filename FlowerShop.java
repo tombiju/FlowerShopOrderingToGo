@@ -5,6 +5,7 @@ Keep track of the number of objects and when you may need to order more.
 */
 //Tom Biju
 import java.util.Scanner;
+import java.util.Random;
 import java.lang.*;
 import java.awt.*;
 import java.awt.image.*;
@@ -19,6 +20,8 @@ import sun.audio.AudioStream;
 public class FlowerShop{
   public static void main(String args[]){
     double value=0.00;
+    int amount=0;
+    int converted;
     /*Creating user and shopkeeper**/
     Person user;
     Person shopKeeper=new Person("Tom Biju",100);
@@ -87,7 +90,7 @@ public class FlowerShop{
     boolean flag=true;
     System.out.println("Hello "+user.getName()+"! Welcome to Fragrant Flowers! How may I help you today?");
     do{
-      System.out.print("The shop keeper, "+shopKeeper.getName()+" has $");
+      System.out.print("The shop keeper, "+shopKeeper.getName()+", has $");
       System.out.printf("%.2f",shopKeeper.getMoney());
       System.out.println();
       System.out.print(user.getName()+" has $");
@@ -108,29 +111,128 @@ public class FlowerShop{
         System.out.println("5-Indian Lotuses");
         System.out.println("6-A bouquet");
         userInput=scanner.next();
+        converted=Integer.parseInt(userInput);
+        if(converted>0&&converted<6){
         System.out.println("How many would you like?");
-        int amount=scanner.nextInt();
+        amount=scanner.nextInt();
+      }
         //Learned how to implement image viewing from Alvin Alexander @ alvinalexander.com
         switch(userInput){
           case "1":
-            value=roseStock.accept(new FlowerProcessingVisitor(),amount,user.getMoney() );
+            value=roseStock.accept(new FlowerProcessingVisitor(),amount,user.getMoney(),false);
             user.transaction(-1*value);
             shopKeeper.transaction(value);
             break;
           case "2":
-            passionFlowerStock.accept(new FlowerProcessingVisitor(),amount,user.getMoney());
+            value=passionFlowerStock.accept(new FlowerProcessingVisitor(),amount,user.getMoney(),false);
+            user.transaction(-1*value);
+            shopKeeper.transaction(value);
             break;
           case "3":
-            marigoldStock.accept(new FlowerProcessingVisitor(),amount,user.getMoney());
+            value=marigoldStock.accept(new FlowerProcessingVisitor(),amount,user.getMoney(),false);
+            user.transaction(-1*value);
+            shopKeeper.transaction(value);
             break;
           case "4":
-            jasmineStock.accept(new FlowerProcessingVisitor(),amount,user.getMoney());
+            value=jasmineStock.accept(new FlowerProcessingVisitor(),amount,user.getMoney(),false);
+            user.transaction(-1*value);
+            shopKeeper.transaction(value);
             break;
           case "5":
-            indianLotusStock.accept(new FlowerProcessingVisitor(),amount,user.getMoney());
+            value=indianLotusStock.accept(new FlowerProcessingVisitor(),amount,user.getMoney(),false);
+            user.transaction(-1*value);
+            shopKeeper.transaction(value);
             break;
           case "6":
              //TODO implement bouquet
+             int flowerCount=0;
+             double bouquetPrice=0;
+             do{
+               System.out.print("The shop keeper, "+shopKeeper.getName()+" has $");
+               System.out.printf("%.2f",shopKeeper.getMoney());
+               System.out.println();
+               System.out.print(user.getName()+" has $");
+               System.out.printf("%.2f",user.getMoney());
+               System.out.println();
+               System.out.println("There are currently "+flowerCount+" flowers in your bouquet.");
+                 System.out.println("Would you like to buy ...");
+                 System.out.println("1-Roses");
+                 System.out.println("2-Passion Flowers");
+                 System.out.println("3-Marigolds");
+                 System.out.println("4-Jasmines");
+                 System.out.println("5-Indian Lotuses");
+                 System.out.println("6-Finish With Current Purchase");
+                 userInput=scanner.next();
+                 converted=Integer.parseInt(userInput);
+                 if(converted>0&&converted<6){
+                 System.out.println("How many would you like?");
+                 amount=scanner.nextInt();
+               }
+                 //Learned how to implement image viewing from Alvin Alexander @ alvinalexander.com
+                 if((flowerCount+amount)<=12){
+                 switch(userInput){
+                   case "1":
+                     value=roseStock.accept(new FlowerProcessingVisitor(),amount,user.getMoney(),false);
+                     if(value>0){
+                       user.transaction(-1*value);
+                       shopKeeper.transaction(value);
+                       bouquetPrice+=value;
+                       flowerCount+=amount;
+                     }
+                     break;
+                   case "2":
+                     value=passionFlowerStock.accept(new FlowerProcessingVisitor(),amount,user.getMoney(),false);
+                     if(value>0){
+                       user.transaction(-1*value);
+                       shopKeeper.transaction(value);
+                       bouquetPrice+=value;
+                       flowerCount+=amount;
+                     }
+                     break;
+                   case "3":
+                     value=marigoldStock.accept(new FlowerProcessingVisitor(),amount,user.getMoney(),false);
+                     if(value>0){
+                       user.transaction(-1*value);
+                       shopKeeper.transaction(value);
+                       bouquetPrice+=value;
+                       flowerCount+=amount;
+                     }
+                     break;
+                   case "4":
+                     value=jasmineStock.accept(new FlowerProcessingVisitor(),amount,user.getMoney(),false);
+                     if(value>0){
+                       user.transaction(-1*value);
+                       shopKeeper.transaction(value);
+                       bouquetPrice+=value;
+                       flowerCount+=amount;
+                     }
+                     break;
+                   case "5":
+                     value=indianLotusStock.accept(new FlowerProcessingVisitor(),amount,user.getMoney(),false);
+                     if(value>0){
+                       user.transaction(-1*value);
+                       shopKeeper.transaction(value);
+                       bouquetPrice+=value;
+                       flowerCount+=amount;
+                     }
+                     break;
+                  case "6":
+                      flowerCount=12;
+                      break;
+                   default:
+                     System.out.println("That's not a valid option...");
+                     break;
+                 }}
+                 else{
+                   System.out.println("You can only have 12 flowers total in a bouquet!");
+                 }
+               }while(flowerCount!=12);
+               if(bouquetPrice>0){
+               System.out.print("You purchased a bouquet for $");
+               System.out.printf("%.2f",bouquetPrice);
+               System.out.println();
+             }
+               break;
           default:
             System.out.println("That's not a valid option...");
             break;
@@ -154,6 +256,7 @@ public class FlowerShop{
           System.out.print("The price for a rose is $");
           System.out.printf("%.2f",roseStock.getPrice());
           System.out.println();
+          System.out.println("There are currently "+roseStock.getAmount()+" of roses in stock");
           editorFrame = new JFrame("Roses");
           editorFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
           image=null;
@@ -177,6 +280,7 @@ public class FlowerShop{
           System.out.print("The price for a passion flower is $");
           System.out.printf("%.2f",passionFlowerStock.getPrice());
           System.out.println();
+          System.out.println("There are currently "+passionFlowerStock.getAmount()+" of passion flowers in stock");
           editorFrame = new JFrame("Passion Flowers");
           editorFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
           image=null;
@@ -200,6 +304,7 @@ public class FlowerShop{
           System.out.print("The price for a marigold is $");
           System.out.printf("%.2f",marigoldStock.getPrice());
           System.out.println();
+          System.out.println("There are currently "+marigoldStock.getAmount()+" of marigolds in stock");
           editorFrame = new JFrame("Marigolds");
           editorFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
           image=null;
@@ -223,6 +328,7 @@ public class FlowerShop{
           System.out.print("The price for a jasmine is $");
           System.out.printf("%.2f",jasmineStock.getPrice());
           System.out.println();
+          System.out.println("There are currently "+jasmineStock.getAmount()+" of jasmines in stock");
           editorFrame = new JFrame("Jasmines");
           editorFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
           image=null;
@@ -246,6 +352,7 @@ public class FlowerShop{
           System.out.print("The price for an indian lotus is $");
           System.out.printf("%.2f",indianLotusStock.getPrice());
           System.out.println();
+          System.out.println("There are currently "+indianLotusStock.getAmount()+" of indian lotuses in stock");
           editorFrame = new JFrame("Indian Lotus");
           editorFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
           image=null;
@@ -273,16 +380,49 @@ public class FlowerShop{
       else if(userInput.equals("3")){
         System.out.println("Proceeding behind the storecounter...");
         System.out.println("Would you like to...");
-        System.out.println("1-Order flowers");
-        System.out.println("2-Make money via the lottery");
-        System.out.println("3-Change the Music");
+        System.out.println("1-Order Flowers");
+        System.out.println("2-Change the Music");
         int choice=scanner.nextInt();
         switch(choice){
           case 1:
+          System.out.println("Would you like to buy ...");
+          System.out.println("1-Roses");
+          System.out.println("2-Passion Flowers");
+          System.out.println("3-Marigolds");
+          System.out.println("4-Jasmines");
+          System.out.println("5-Indian Lotuses");
+          System.out.println("6-A bouquet");
+          userInput=scanner.next();
+          converted=Integer.parseInt(userInput);
+          if(converted>0&&converted<6){
+          System.out.println("How many would you like?");
+          amount=scanner.nextInt();
+        }
+          //Learned how to implement image viewing from Alvin Alexander @ alvinalexander.com
+          switch(userInput){
+            case "1":
+              value=roseStock.accept(new FlowerProcessingVisitor(),amount,shopKeeper.getMoney(),true);
+              shopKeeper.transaction(-1*value);
+              break;
+            case "2":
+              value=passionFlowerStock.accept(new FlowerProcessingVisitor(),amount,shopKeeper.getMoney(),true);
+              shopKeeper.transaction(-1*value);
+              break;
+            case "3":
+              value=marigoldStock.accept(new FlowerProcessingVisitor(),amount,shopKeeper.getMoney(),true);
+              shopKeeper.transaction(-1*value);
+              break;
+            case "4":
+              value=jasmineStock.accept(new FlowerProcessingVisitor(),amount,shopKeeper.getMoney(),true);
+              shopKeeper.transaction(-1*value);
+              break;
+            case "5":
+              value=indianLotusStock.accept(new FlowerProcessingVisitor(),amount,shopKeeper.getMoney(),true);
+              shopKeeper.transaction(-1*value);
+              break;
+            }
             break;
           case 2:
-            break;
-          case 3:
             System.out.println("Would you like to...");
             System.out.println("1-Play The Song of Storms?");
             System.out.println("2-Play The Milk Bar Song?");
@@ -313,13 +453,37 @@ public class FlowerShop{
             System.out.println("That's not a valid option...");
         }
       }
-      else{
+      else if(userInput.equals("4")){
+        boolean validity=false;
+        int lotteryPlayer;
+        do{
+        System.out.println("Are you the...");
+        System.out.println("1-Customer");
+        System.out.println("2-Shopkeeper");
+        lotteryPlayer=scanner.nextInt();
+        if(lotteryPlayer==1||lotteryPlayer==2){
+          validity=true;
+          Random rand = new Random();
+
+          int  lottery = rand.nextInt(100) + 1;
+          System.out.println("You've won $"+lottery+"!");
+          if(lotteryPlayer==1){
+            user.transaction(lottery);
+          }
+          else{
+            shopKeeper.transaction(lottery);
+          }
+        }
+      }while(validity==false);
+      }
+      else if(userInput.equals("5")){
         flag=false;
         System.out.println("Thank you, come again!");
         System.exit(1);
       }
-        //switch statement goes here
-      //  roseStock.accept(new FlowerProcessingVisitor());
+      else{
+        System.out.println("That's not a valid option!");
+      }
       }while(flag);
     }
   }

@@ -7,7 +7,12 @@ public Marigold(int amount, double price, String name){
   this.price=price;
   this.name=name;
 }
-public double accept(FlowerVisitor flowerVisitor, int amount, double userMoney){
+public double accept(FlowerVisitor flowerVisitor, int amount, double userMoney,boolean isOwner){
+  if(!isOwner){
+  if(amount>this.amount){
+    System.out.println("We do not have that many marigolds in stock!");
+    return 0;
+  }
     int actualAmount=checkInventory(amount);
     double actualPrice=actualAmount*flowerVisitor.calculate(this);
     if(userMoney<actualPrice){
@@ -18,8 +23,25 @@ public double accept(FlowerVisitor flowerVisitor, int amount, double userMoney){
     System.out.print("You bought "+actualAmount+" marigolds for $");
     System.out.printf("%.2f",actualPrice);
     System.out.println();
+    System.out.println("There are now "+getAmount()+" marigolds in stock.");
   }
-    return actualPrice;
+  return actualPrice;
+}
+else{
+  double orderPrice=amount*flowerVisitor.calculate(this);
+  if(userMoney<orderPrice){
+    System.out.println("You do not have enough money to make this transaction!");
+    return 0;
+  }
+  else{
+    this.amount+=amount;
+    System.out.print("You have bought "+amount+" marigolds for $");
+    System.out.printf("%.2f",orderPrice);
+    System.out.println();
+    System.out.println("There are now "+getAmount()+" marigolds in stock.");
+  }
+  return orderPrice;
+}
 }
 public double getPrice(){
   return this.price;
