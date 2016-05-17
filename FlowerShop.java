@@ -256,7 +256,7 @@ public class FlowerShop{
           System.out.print("The price for a rose is $");
           System.out.printf("%.2f",roseStock.getPrice());
           System.out.println();
-          System.out.println("There are currently "+roseStock.getAmount()+" of roses in stock");
+          System.out.println("There are currently "+roseStock.getAmount()+" roses in stock");
           editorFrame = new JFrame("Roses");
           editorFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
           image=null;
@@ -280,7 +280,7 @@ public class FlowerShop{
           System.out.print("The price for a passion flower is $");
           System.out.printf("%.2f",passionFlowerStock.getPrice());
           System.out.println();
-          System.out.println("There are currently "+passionFlowerStock.getAmount()+" of passion flowers in stock");
+          System.out.println("There are currently "+passionFlowerStock.getAmount()+" passion flowers in stock");
           editorFrame = new JFrame("Passion Flowers");
           editorFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
           image=null;
@@ -304,7 +304,7 @@ public class FlowerShop{
           System.out.print("The price for a marigold is $");
           System.out.printf("%.2f",marigoldStock.getPrice());
           System.out.println();
-          System.out.println("There are currently "+marigoldStock.getAmount()+" of marigolds in stock");
+          System.out.println("There are currently "+marigoldStock.getAmount()+" marigolds in stock");
           editorFrame = new JFrame("Marigolds");
           editorFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
           image=null;
@@ -328,7 +328,7 @@ public class FlowerShop{
           System.out.print("The price for a jasmine is $");
           System.out.printf("%.2f",jasmineStock.getPrice());
           System.out.println();
-          System.out.println("There are currently "+jasmineStock.getAmount()+" of jasmines in stock");
+          System.out.println("There are currently "+jasmineStock.getAmount()+" jasmines in stock");
           editorFrame = new JFrame("Jasmines");
           editorFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
           image=null;
@@ -352,7 +352,7 @@ public class FlowerShop{
           System.out.print("The price for an indian lotus is $");
           System.out.printf("%.2f",indianLotusStock.getPrice());
           System.out.println();
-          System.out.println("There are currently "+indianLotusStock.getAmount()+" of indian lotuses in stock");
+          System.out.println("There are currently "+indianLotusStock.getAmount()+" indian lotuses in stock");
           editorFrame = new JFrame("Indian Lotus");
           editorFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
           image=null;
@@ -385,13 +385,12 @@ public class FlowerShop{
         int choice=scanner.nextInt();
         switch(choice){
           case 1:
-          System.out.println("Would you like to buy ...");
+          System.out.println("Would you like to order ...");
           System.out.println("1-Roses");
           System.out.println("2-Passion Flowers");
           System.out.println("3-Marigolds");
           System.out.println("4-Jasmines");
           System.out.println("5-Indian Lotuses");
-          System.out.println("6-A bouquet");
           userInput=scanner.next();
           converted=Integer.parseInt(userInput);
           if(converted>0&&converted<6){
@@ -420,6 +419,8 @@ public class FlowerShop{
               value=indianLotusStock.accept(new FlowerProcessingVisitor(),amount,shopKeeper.getMoney(),true);
               shopKeeper.transaction(-1*value);
               break;
+            default:
+              System.out.println("Not a valid option...");
             }
             break;
           case 2:
